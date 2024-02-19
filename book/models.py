@@ -35,11 +35,6 @@ class Book(models.Model):
     objects = BookManager()
 
     @property
-    def borrowed_count(self) -> int:
-        """count of borrowed books."""
-        return self.borrowed_count
-
-    @property
     def available_count(self) -> int:
         """Calculate and return the count of available books."""
         return self.total_count - self.borrowed_count

@@ -66,6 +66,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'LibraryAPI.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
