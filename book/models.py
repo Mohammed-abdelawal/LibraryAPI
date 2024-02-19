@@ -36,7 +36,7 @@ class Book(models.Model):
 
     @property
     def borrowed_count(self) -> int:
-        """Calculate and return the count of borrowed books."""
+        """count of borrowed books."""
         return self.borrowed_count
 
     @property

@@ -22,7 +22,10 @@ class BorrowRecord(models.Model):
         Book, on_delete=models.CASCADE,
         verbose_name="Book", related_name="borrow_records"
     )
-    borrower: Borrower = models.ForeignKey(Borrower, on_delete=models.CASCADE, verbose_name="Borrower")
+    borrower: Borrower = models.ForeignKey(
+        Borrower, on_delete=models.CASCADE,
+        verbose_name="Borrower", related_name="borrow_records"
+    )
     borrow_date: datetime.date = models.DateField(auto_now_add=True, verbose_name="Borrow Date")
     return_date: datetime.date = models.DateField(null=True, blank=True, verbose_name="Return Date")
 
