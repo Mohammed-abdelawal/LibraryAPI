@@ -1,9 +1,9 @@
+import random
+from functools import partial
+
 import factory
-from faker import Faker
 
 from book.models import Author, Book
-
-fake = Faker()
 
 
 class AuthorFactory(factory.django.DjangoModelFactory):
@@ -11,9 +11,9 @@ class AuthorFactory(factory.django.DjangoModelFactory):
         model = Author
 
     name = factory.Sequence(lambda n: f'Author {n}')
-    biography = fake.paragraph()
-    birth_date = fake.date_of_birth()
-    death_date = fake.date_of_death()
+    biography = factory.Faker("paragraph")
+    birth_date = factory.Faker('date')
+    death_date = factory.Faker('date')
 
 
 class BookFactory(factory.django.DjangoModelFactory):
@@ -22,8 +22,8 @@ class BookFactory(factory.django.DjangoModelFactory):
 
     title = factory.Sequence(lambda n: f'Book {n}')
     author = factory.SubFactory(AuthorFactory)
-    isbn = fake.unique.isbn13(separator="-")
-    genre = fake.word()
-    publication_date = fake.date_this_decade()
-    description = fake.paragraph()
-    total_count = fake.random_int(min=1, max=100)
+    isbn = factory.Sequence(lambda n: f"23{n}2-342-{n}"[:12])
+    genre = factory.Faker("name")
+    publication_date = factory.Faker('date')
+    description = factory.Faker("sentence")
+    total_count = factory.LazyFunction(partial(random.randint, 3, 100))
