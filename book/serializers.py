@@ -9,7 +9,11 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ['id', 'title', 'author', 'isbn', 'genre', 'publication_date', 'description', 'total_count', 'available_count', 'borrowed_count']
+        fields = [
+            'id', 'title', 'author', 'isbn', 'genre',
+            'publication_date', 'description', 'total_count',
+            'available_count', 'borrowed_count'
+        ]
         read_only_fields = ('id', 'borrowed_count', "available_count")
 
 
