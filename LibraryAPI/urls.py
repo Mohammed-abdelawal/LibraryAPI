@@ -5,7 +5,8 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 
 v1_urls = [
-    path('book-app/', include("book.urls"))
+    path('book-app/', include("book.urls")),
+    path('library-app/', include("library.urls")),
 
 ]
 

@@ -1,13 +1,14 @@
 import datetime
 
 from django.db import models
-from django.db.models import Count
+from django.db.models import Count, Q
 
 
 class BookManager(models.Manager):
     def get_queryset(self):
-        # To avoid N+1 issue
-        return super().get_queryset().annotate(borrowed_count=Count('borrow_records'))
+        return super().get_queryset().annotate(
+            borrowed_count=Count('borrow_records', filter=~Q(borrow_records__return_date__isnull=False))
+        )
 
 
 class Author(models.Model):
